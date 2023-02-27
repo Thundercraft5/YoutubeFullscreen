@@ -26,5 +26,10 @@
 				"dist/content-script.js"
 			]
 		}
-	]
+	],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{f4eeb03c-8a68-4d3c-a9d2-3934282f6c9c}"
+		}
+	}
 }
