@@ -1,0 +1,73 @@
+{
+	"name": "youtube-fullscreen",
+	"version": "1.0.0",
+	"description": "Chrome extension which forces fullscreen for YouTube embeds.",
+	"type": "module",
+	"license": "BSD-3-Clause",
+	"keywords": [
+		"Youtube",
+		"Embed",
+		"Fullscreen"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thundercraft5/YouTubeFullscreen.git"
+	},
+	"bugs": {
+		"url": "https://github.com/thundercraft5/YouTubeFullscreen/issues"
+	},
+	"homepage": "https://github.com/thundercraft5/YouTubeFullscreen#readme",
+	"scripts": {
+		"build": "npm run clean && esbuild --sourcemap --format=esm --platform=browser --outdir=dist --bundle ./src/content-script.ts",
+		"watch": "npm run build -- --watch",
+		"clean": "del-cli ./dist"
+	},
+	"devDependencies": {
+		"@thundercraft5/eslint-plugin": "file:../../Libraries/NodeJS/eslint-plugin",
+		"@thundercraft5/tsconfig": "file:../../Libraries/NodeJS/tsconfig",
+		"@thundercraft5/type-utils": "file:../../Libraries/NodeJS/type-utils",
+		"del-cli": "5.0.0",
+		"esbuild": "0.15.13",
+		"eslint": "8.25.0",
+		"eslint-import-resolver-typescript": "3.5.1",
+		"eslint-plugin-eslint-comments": "3.2.0",
+		"eslint-plugin-import": "2.26.0",
+		"fs-extra": "10.1.0",
+		"npm-run-all": "4.1.5",
+		"ts-node": "10.9.1",
+		"typescript": "5.0.0-dev.20221108"
+	},
+	"files": [
+		"dist"
+	],
+	"eslintConfig": {
+		"root": true,
+		"ignorePatterns": "**/*.d.ts",
+		"overrides": [
+			{
+				"extends": "plugin:@thundercraft5/typescript",
+				"files": "**/*.ts",
+				"parserOptions": {
+					"project": "./tsconfig.json",
+					"tsconfigRootDir": "./"
+				},
+				"settings": {
+					"import/parsers": {
+						"@typescript-eslint/parser": [
+							".ts",
+							".tsx"
+						]
+					}
+				},
+				"rules": {
+					"@thundercraft5/consistent-type-imports": "warn",
+					"@typescript-eslint/consistent-type-imports": "warn",
+					"nonblock-statement-body-position": [
+						"warn",
+						"below"
+					]
+				}
+			}
+		]
+	}
+}

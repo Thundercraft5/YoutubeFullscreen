@@ -1,0 +1,18 @@
+{
+	"extends": "@thundercraft5/tsconfig/node18.tsconfig.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"WebWorker"
+		]
+	},
+	"include": [
+		"**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
+}

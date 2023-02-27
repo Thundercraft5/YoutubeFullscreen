@@ -1,0 +1,27 @@
+{
+	"name": "YoutubeFullscreen",
+	"author": "Thundercraft5 <https://github.com/Thundercraft5>",
+	"manifest_version": 3,
+	"version": "1",
+	"description": "Force enables fullscreen for youtube embeds.",
+	"icons": {
+		"128": "./icons/icon128.png",
+		"96": "./icons/icon96.png",
+		"64": "./icons/icon32.png",
+		"32": "./icons/icon32.png"
+	},
+	"permissions": [
+		"scripting"
+	],
+	"content_scripts": [
+		{
+			"run_at": "document_start",
+			"matches": [
+				"*://*/*"
+			],
+			"js": [
+				"dist/content-script.js"
+			]
+		}
+	]
+}
