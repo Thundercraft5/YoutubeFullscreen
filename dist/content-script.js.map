@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/content-script.ts"],
+  "sourcesContent": ["// Listen for changes to the DOM, find iframes that are about to be added\r\nnew MutationObserver(e => {\r\n\te.forEach(m => {\r\n\t\t// @ts-ignore\r\n\t\tm.addedNodes.forEach((n: Element) => {\r\n\t\t\tif (n.nodeName === \"IFRAME\" && n.getAttribute(\"allowfullscreen\") === null && n.getAttribute(\"src\")?.match(/^.*:\\/\\/(?:www\\.)?youtube\\.com\\/embed\\/.*$/)) {\r\n\t\t\t\tconsole.log(`[YoutubeFullscreen] Reloaded Youtube Embed with src ${n.getAttribute(\"src\")}`);\r\n\t\t\t\tn.setAttribute(\"allowfullscreen\", \"\");\r\n\t\t\t\t// Reload iframe with allow fullscreen\r\n\t\t\t\tn.outerHTML = n.outerHTML;\r\n\t\t\t}\r\n\t\t});\r\n\t})\r\n}).observe(document.documentElement, {\r\n\tchildList: true,\r\n\tsubtree: true,\r\n\tcharacterData: true,\r\n\tattributes: true\r\n});\r\n\r\n// Reload iframes\r\ndocument.querySelectorAll(`iframe[src*=\"youtube.com/embed/\"]`).forEach(e => {\r\n\te.outerHTML = e.outerHTML\r\n})"],
+  "mappings": ";AACA,IAAI,iBAAiB,OAAK;AACzB,IAAE,QAAQ,OAAK;AAEd,MAAE,WAAW,QAAQ,CAAC,MAAe;AACpC,UAAI,EAAE,aAAa,YAAY,EAAE,aAAa,iBAAiB,MAAM,QAAQ,EAAE,aAAa,KAAK,GAAG,MAAM,4CAA4C,GAAG;AACxJ,gBAAQ,IAAI,uDAAuD,EAAE,aAAa,KAAK,GAAG;AAC1F,UAAE,aAAa,mBAAmB,EAAE;AAEpC,UAAE,YAAY,EAAE;AAAA,MACjB;AAAA,IACD,CAAC;AAAA,EACF,CAAC;AACF,CAAC,EAAE,QAAQ,SAAS,iBAAiB;AAAA,EACpC,WAAW;AAAA,EACX,SAAS;AAAA,EACT,eAAe;AAAA,EACf,YAAY;AACb,CAAC;AAGD,SAAS,iBAAiB,mCAAmC,EAAE,QAAQ,OAAK;AAC3E,IAAE,YAAY,EAAE;AACjB,CAAC;",
+  "names": []
+}
